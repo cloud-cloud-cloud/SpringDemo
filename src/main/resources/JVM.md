@@ -69,7 +69,7 @@
      JNI的使用是java程序失去了java的平台的两大优点：可跨平台； 程序不在是绝对的安全
 
  ##### JVM的结构体系
- <a href='/static/images/JVM_structure.png'></a>
+ https://github.com/cloud-cloud-cloud/SpringDemo/blob/master/src/main/resources/static/images/JVM_structure.png
  ##### jvm gc垃圾回收机制
  stop-the-word ，意味着jvm在需要执行gc而停止应用程序的执行。当stop-the-word发生时，除gc所需的线程外，所以的线程都进入等待状态，直到gc任务完成。
      GC的优化很多时候就是减少stop-the-word
