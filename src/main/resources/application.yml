@@ -1,0 +1,23 @@
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+
+
+#实现服务端的负载均衡，通过过注解@LoadBalanced 来实现负载均衡。rabbitMQ需要自己配置loadBalance
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+
+discovery:
+  client:
+    cronStrings: "0/30 * * * * ?" #固定周期刷新配置。当前为每分钟两次，第0、30秒
+
+qf:
+  config:
+    ServiceInstance: "http://172.16.5.246:9009/api/serviceInstances/UP" #节点配置
+    ServiceConfig: "http://172.16.5.246:9009/api/serviceConfigs" #服务配置
+
+#failover配置　　故障切换，指其中一个系统设备或者服务失效而无法运作时，另外一个机器会自动接管失败系统的工作
+failover:
+  ServiceInstance: api/serviceInstances/UP #节点配置
+  ServiceConfig: api/serviceConfigs #服务配置
+  listOfServers: http://172.16.5.246:9009 #注册中心服务列表
