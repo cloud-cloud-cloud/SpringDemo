@@ -70,7 +70,7 @@
 
  ##### JVM的结构体系
  ![](static/images/JVM_structure.png)
- https://github.com/cloud-cloud-cloud/SpringDemo/blob/master/src/main/resources/static/images/JVM_structure.png
+
  ##### jvm gc垃圾回收机制
  stop-the-word ，意味着jvm在需要执行gc而停止应用程序的执行。当stop-the-word发生时，除gc所需的线程外，所以的线程都进入等待状态，直到gc任务完成。
      GC的优化很多时候就是减少stop-the-word
