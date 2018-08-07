@@ -31,3 +31,50 @@
   ，与所熟知的tcp-传输控制协议  一样，UDP协议直接位于ip协议的顶层，UDP与tcp协议都属于传输层协议）中的网络传输；
   - Pipe.SinkChannel;
   - Pipe.SourceChannel;
+
+
+
+#####  Java 中怎么创建 ByteBuffer？
+        ByteBuffer buffer=ByteBuffer.allocate(1024)
+
+##### Java 中，怎么读写 ByteBuffer ？
+         buffer.get();buffer.put();
+
+##### ByteBuffer 中的字节序是什么？
+    java 中两种字节序 big-endian最低地址存放的最高的有效字节,
+    little-endian最低地址存放的最小的有效字节
+
+##### Java 中，ByteBuffer 与 StringBuffer有什么区别？
+    一个是字节，一个存放字符串
+
+##### 用 NIO实现的文件复制（包括文件与文件夹复制） NIO读取数据与写数据，请说出核心步骤，不需要全部代码
+
+
+##### java nio socket 怎么让客户端知道服务器端将数据发送完毕
+ 我们可以判断读取的数据，当 从管道读取内容-1判断端口，数据发送完毕。
+ ByteBuffer bf = ByteBuffer.allocate(6);
+         SocketChannel sc = (SocketChannel) sKey.channel();
+         buffer.clear();
+
+         reccount = sc.read(buffer);
+         if(reccount == -1){
+             System.out.println("断开..."
+                     + sc.socket().getRemoteSocketAddress());
+             sc.close();
+         }
+
+
+
+##### 如何基于JAVA NIO实现socket的非阻塞操作
+利用selector来实现socket非阻塞操作；
+  将Socketchannel对象注册到指定Selector
+  Selector selector=Selector.open();
+  SocketChannel sc=SocketChannel.open(new InetSocketAddress("127.0.0.1",30000));
+  sc.configureBlocking(false);
+  sc.regsiter(selector,SelectionKey.OP_READ);
+
+##### 如何提高IO读写速度？
+
+
+##### 生成一个100万行的.txt文件，你有什么办法吗？能否说一下核心设计思想
+  利用nio 读写，利用map将数据，分段往.txt里面存放。 bufferReader

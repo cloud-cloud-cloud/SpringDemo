@@ -1,0 +1,37 @@
+    #### :snail:  mybatis
+    ##### Mybatis基础: #{...} 和 ${...} 的区别
+    防止sql注入的 ${}会被编译，
+
+    #####  在mybatis做like比较查询 一种是在代码里用通配符 另一种是使用selectLike
+      like "%"#{name}"%"
+
+    ##### 如何执行批量插入?
+
+
+    ##### 如何获取自动生成的(主)键值?
+
+
+    ##### 如何使用oracle中的序列？
+
+
+    ##### 在mapper中如何传递多个参数?
+
+
+    ##### mybatis的拦截器你有没有用过？
+
+
+    ##### 使用拦截器做登录
+
+
+    ##### 使用拦截器做分页
+
+
+    ##### 可以询问SqlSessionFactory,SqlSession的原理
+
+
+    ##### JdbcTransaction,ManagedTransaction
+
+
+    ##### 比较SimpleExecutor,ReusedExecutor,BatchExcecutor的差别
+
+    #####  MYSQL超时重连怎么配？
