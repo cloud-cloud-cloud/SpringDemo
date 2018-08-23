@@ -10,7 +10,7 @@ import java.util.List;
  * Created by HMa on 2018/7/4.
  */
 @Component
-@PropertySource("classpath:redis.properties")//1 通过配置属性文件 2直接在属性上面配置属性名称 @Value("${my.name1}")
+@PropertySource("classpath:document/redis.properties")//1 通过配置属性文件 2直接在属性上面配置属性名称 @Value("${my.name1}")
 @ConfigurationProperties(prefix = "default.redis")//默认前缀
 public class RedisProperties {
 

@@ -10,14 +10,16 @@
  - consumer：消息消费者，接受消息的程序；
  - channel：消息通道，在客户端可以建立多个消息通道。
 ##### 消息分发机制
-  round-robin 循环分发。
-  fair dispath分平分发，会将n个消息分发到第N个consumer，n是取余。不过这样会导致有的很忙，有的很闲。
+  -  round-robin 循环分发。
+  -　fair dispath分平分发，会将n个消息分发到第N个consumer，n是取余。不过这样会导致有的很忙，有的很闲。
+
+  在nginx里面的公平分发是按照时间越短的优先（fair），另外其他几种分发方式：轮询，weight,ip_hash(session),url_hash(upstream_hash),
 
  **交换机路由的几种规则**
- - direct Exchange
- - fanout exchange广播订阅
- - topic exchang  主题匹配订阅；
- - headers exchagne 消息头订阅
+  - 直接匹配(direct exchange)（通过exchange与routing key进行binding）
+   - 主题匹配订阅(topic exchange):将消息绑定到该路由器上面，并且制定的routing key符合规则才能接收；
+   - 广播订阅(fanout exchange): 向所有消费这发送消息，但是只有消费者将队列绑定到路由器，才能收到消息，忽略 routing key;
+   - 消息头订阅(header exchange)：消息发布前，消息定义一个或者多个键值对的消息头，去订阅消费消息的时候，只有消费体的请求头和消息头匹配，才能接收消息，忽略routingkey
 
  ##### protoBuf数据类型
  要通信就必须要有协议，否则双方无法理解对方的码流，在protoBUf中协议是一系列的组成。因此最重要的是定义消息结构

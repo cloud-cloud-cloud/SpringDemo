@@ -1,0 +1,112 @@
+<!DOCTYPE mapper  
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.EmailCfgMapper">
+
+    <sql id="emailCfgResult">
+		email_type AS "emailType",
+		subject AS "subject",
+		receiver_list AS "receiverList",
+		cc_list AS "ccList",
+		template AS "template",
+		update_time AS "updateTime"
+	</sql>
+
+
+	<!-- select by subject -->
+	<select id="selectBySubject" resultType="com.qf.ndes.entity.EmailCfg">
+		select
+			<include refid="emailCfgResult" />
+	    from ndes_cfg_email 
+		where subject = #{subject}
+	</select>
+	
+	
+	<!-- select by id -->
+	<select id="selectByEmailType" resultType="com.qf.ndes.entity.EmailCfg">
+		select
+			<include refid="emailCfgResult" />
+	    from ndes_cfg_email 
+		where email_type = #{emailType}
+	</select>
+	
+	<select id="selectAll" resultType="com.qf.ndes.entity.EmailCfg">
+		select
+			<include refid="emailCfgResult" />
+	    from ndes_cfg_email
+	</select>
+	
+	<!-- insert -->
+	<insert id="insert">
+		insert into ndes_cfg_email 
+		(
+			email_type,
+			subject,
+			receiver_list,
+			cc_list,
+			<if test="updateTime != null">
+				update_Time,
+			</if>
+			template
+		)
+		values 
+		(
+			#{emailType,jdbcType=VARCHAR},
+			#{subject,jdbcType=VARCHAR},
+			#{receiverList,jdbcType=VARCHAR},
+			#{ccList,jdbcType=VARCHAR},
+			<if test="updateTime != null">
+			  #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			#{template,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<!-- update -->
+	<update id="update" parameterType="com.qf.ndes.entity.EmailCfg">
+		update ndes_cfg_email 
+		set 
+			subject = #{subject,jdbcType=VARCHAR},
+			receiver_list = #{receiverList,jdbcType=VARCHAR},
+			cc_list = #{ccList,jdbcType=VARCHAR},
+			<if test="updateTime != null">
+				update_Time = #{updateTime,jdbcType=TIMESTAMP} ,
+			</if>
+		    template = #{template,jdbcType=VARCHAR}
+		where email_type = #{emailType,jdbcType=VARCHAR}
+	</update>
+
+	
+	<!-- delete -->
+	<update id="deleteByEmailType">
+		delete 
+		from ndes_cfg_email 
+		where email_type = #{emailType, jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectByConditon" resultType="com.qf.ndes.entity.EmailCfg">
+		select
+		<include refid="emailCfgResult" />
+		from ndes_cfg_email
+		<where>
+			<if test="subject != null">
+			   AND subject = #{subject,jdbcType=VARCHAR}
+			</if>
+			<if test="emailType != null">
+			   AND email_type = #{emailType,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+			   AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByGreaterUpdateTime" resultType="com.qf.ndes.entity.EmailCfg">
+		select
+		<include refid="emailCfgResult" />
+		from ndes_cfg_email
+		WHERE update_time <![CDATA[ > ]]> #{updateTime,jdbcType=TIMESTAMP}
+	</select>
+	
+</mapper>

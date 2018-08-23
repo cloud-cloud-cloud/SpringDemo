@@ -242,33 +242,33 @@
 
       URIEncoding="UTF-8"
 
-       minSpareThreads="25"
+       minSpareThreads="25" #该Connector先创建25个线程等待客户请求，每个请求由一个线程负责
 
        maxSpareThreads="75"
 
-       enableLookups="false"
+       enableLookups="false"#如果为true，则可以通过调用request.getRemoteHost()进行DNS查询来得到远程客户端的实际主机名，若为false则不进行DNS查询，而是返回其ip地址
 
-      disableUploadTimeout="true"
+      disableUploadTimeout="true"#许Servlet容器，正在执行使用一个较长的连接超时值，以使Servlet有较长的时间来完成它的执行，默认值为false
 
-      connectionTimeout="20000"
+      connectionTimeout="20000"#定义建立客户连接超时的时间.如果为-1,表示不限制建立客户连接的时间
 
-      acceptCount="300"
+      acceptCount="300" #指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理
 
-      maxThreads="300"
+      maxThreads="300"　最大线程数，默认值为200
 
       maxProcessors="1000"
 
-      minProcessors="5"
+      minProcessors="5"#服务器启动时创建的处理请求的线程数
 
       useURIValidationHack="false"
 
-      compression="on"
+      compression="on"# 是否压缩 默认false
 
       compressionMinSize="2048"
 
       compressableMimeType="text/html,text/xml,text/javascript,text/css,text/plain"
 
-      redirectPort="8443"/>
+      redirectPort="8443"/> # 指定服务器正在处理http请求时收到了一个SSL传输请求后重定向的端口号
 
       如何优化Tomcat配置，提升Tomcat性能。
 
