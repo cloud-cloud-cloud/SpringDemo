@@ -1085,7 +1085,7 @@
     url与urn都属于uri
 
     ###### chrome请求发起的http请求报文头信息
-    ![](resources/static/images/requestHead.png)
+    ![](./static/images/requestHead.png)
     accept：标示可以接受那些类型的mime（multipurpose Internet mail  extensions 多用途互联网邮件扩展，是一个互联网标准，它扩展了电子邮件的
     标准，使其能够支持ASCII字符，二进制格式附件，等多宗格式的邮件信息。）;
     connection:keep-alive表示连接是不中断的
