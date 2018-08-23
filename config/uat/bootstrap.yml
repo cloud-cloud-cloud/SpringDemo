@@ -1,0 +1,19 @@
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+discovery:
+  client:
+    cronStrings: "0/30 * * * * ?" #固定周期刷新配置。当前为每分钟两次，第0、30秒
+
+qf:
+  config:
+    ServiceInstance: "http://172.29.250.21:10002/api/serviceInstances/UP" #节点配置
+    ServiceConfig: "http://172.29.250.21:10002/api/serviceConfigs" #服务配置
+    
+#failover配置
+failover:
+  ServiceInstance: api/serviceInstances/UP #节点配置
+  ServiceConfig: api/serviceConfigs #服务配置
+  listOfServers: http://172.29.250.21:10002 #注册中心服务列表

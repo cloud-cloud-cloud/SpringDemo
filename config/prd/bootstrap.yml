@@ -1,0 +1,18 @@
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+
+discovery:
+  client:
+    cronStrings: "0/30 * * * * ?"
+
+qf:
+  config:
+    ServiceInstance: "http://cos.quarkfinance.com/api/serviceInstances/UP"
+    ServiceConfig: "http://cos.quarkfinance.com/api/serviceConfigs"
+
+failover:
+  ServiceInstance: api/serviceInstances/UP
+  ServiceConfig: api/serviceConfigs
+  listOfServers: http://cos.quarkfinance.com
