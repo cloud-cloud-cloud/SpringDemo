@@ -1,0 +1,80 @@
+[
+  {
+    "name": "zzc",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "yujian",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "shumei",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "qf",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "tsp",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "zhanggui",
+    "corePoolSize": 15,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "DB",
+    "corePoolSize": 15,
+    "queueSize": 30,
+    "maxPoolSize": 20
+  },
+  {
+    "name": "DB-history",
+    "corePoolSize": 15,
+    "queueSize": 20,
+    "maxPoolSize": 20
+  },
+  {
+  "name": "bairong",
+  "corePoolSize": 10,
+  "queueSize": 20,
+  "maxPoolSize": 15
+},
+  {
+    "name": "xinyan",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "tongdun",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "nineone",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  },
+  {
+    "name": "allinpay",
+    "corePoolSize": 10,
+    "queueSize": 20,
+    "maxPoolSize": 15
+  }
+]

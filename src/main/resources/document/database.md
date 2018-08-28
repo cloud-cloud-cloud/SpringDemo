@@ -10,6 +10,25 @@
     - 可重复读（repeatable read）:一个事务在执行的过程中可以看到其他事务已经提交的新插入的记录，但是不能看到其他事务对已有记录的更新。
     - 读已提交数据(read commit)：一个事务在执行的过程中可以看到其他事务已经提交的新插入的记录，而且能看到其他事务已经提交的记录更新
     - 读未提交数据(read uncommited)：一个事务在执行过程中可以看到其他事务没有提交的新插入数据，而且能看到其他事务没有提交的对已有记录的更新。
+        隔离级别         脏读  可幻读  可重复读
+        read-uncommit   允许    允许    允许
+        read-commit             允许    允许
+        repeatable-read          允许
+        serializable
+
+      ##### 数据库事务的四个特性，四个隔离级别，一致性处理，基于事务的mysql数据库引擎选型；
+      数据库的四大特性：原子性，一致性，持久性，隔离性
+      隔离级别：
+      - 串行化Serializable:可避免脏读，不可重复读，幻读的发生。
+      - 可重复读(repeatable read)（mysql默认的数据库事务隔离级别）：一个事务在执行的过程中可以看到其他事务已经插入的数据，但是不能看到其他事务对已有记录的更新；（可以避免脏读，不可重复读的发生）.innodb存储引擎是默认的repeatable-read
+      - 读已提交数据（read commit），一个事务在提交的过程中可看到其他事务已经插入的数据，而且能看到已经提交更新的记录（可避免脏读）；
+      - 读未提交数据(read uncommit)：一个事务在提交的过程中，可看到其他事务未提交的插入数据，而且能看到其他事务没有提交的对已有记录的更新；这种事务隔离级别是最低的。任何都保证不了。
+      mysql 设置事务   set transaction isolation level  repeatable  read; / set tx_isolation='read-uncommit';
+      mysql 读取事务 select  @@tx_isolation;
+      mysql支持以上四种隔离级别，默认的是repeatable-read,innodb使用的是repeatable-read ,myisam不支持事务
+      oracle 支持 serializable，和read-committed级别。
+         幻读是在非一个事务执行的过程中发生的。例如说一个事务将一行数据从1修改为2，但是这个时候另外一个线程新插入一行数据，这个时候插入的值是1，这样就导致以为没有修改。
+
 
      **区别于spring的事务管理**
 

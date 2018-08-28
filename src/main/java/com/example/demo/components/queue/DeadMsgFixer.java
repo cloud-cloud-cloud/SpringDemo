@@ -9,6 +9,9 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * 死亡消息处理，重试
+ */
 public class DeadMsgFixer {
 
 	private static final Logger logger = LoggerFactory.getLogger(DeadMsgFixer.class);

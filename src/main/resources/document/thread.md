@@ -203,3 +203,28 @@
       线程的安全性保函两个方面 ：可见性，原子性。所有对于volatile并不能保证线程安全性，，
       而synchronize则可实现线程的安全性。
 
+    ##### synchronize与reentrantLock比较区别
+    - synchronize是阻塞锁，当线程A持有锁的是，线程B排队等待A释放锁状态， 是jvm实现的，便于jvm堆栈跟踪，实现简单，语义清晰，但是是悲观的排他锁，不能进行高级功能；
+    - reentrantLock 可重入锁，分为公平性，非公平性。可定时，可轮询，可中断的锁获取操作。提供了读写锁，公平锁，非公平锁，不够需要手动释放锁unlock，不适合jvm进行堆栈跟踪。
+      1.公平性：根据线程请求锁的顺序依次获取锁，
+      2.非公平性 当线程A释放后，准备唤醒线程B获取资源的时候，此时线程M获取请求，这样就会出现竞争，线程B没有竞争过M,M获取锁
+    - synchronize是一个非公平锁，非公平锁的效率比公平锁效率高很多，不需要通知等待
+    - reentrantLock提供了new condition可以获取多个condition对象，那么简单实现比较复杂的线程同步的功能你就可以通过await().signal()实现、
+    - reentrantLock提供了一个lock.lockInterruptbly（）方法可中断  可重试，相比较于synchronize
+    ##### current下面的类及其作用
+    - AtomicInteger 安全自增操作，相比较integer，进行原子获取，修改操作。没用用synchronize。
+    - ThreadFactory  线程工程接口  可以重写线程工厂。例如说在里面创建新的线程。每次新创建   String threadName = ThreadPoolExecutor.class.getSimpleName() +（new auticInteger()).addAndGet(1);
+    - ThreadLocal
+    - RejectExecutionHandler 线程拒绝策略 ，在使用线程池并且使用有界队列的时候，如果队列满了，任务添加线程池的时候就会有问题，针对这个问题java线程提供了以下几种策略
+      1.AbortPolicy  该策略为线程池默认的策略，如果使用该策略时候，线程池满了就丢弃这个任务，并抛出RejectExecutionException
+      2.DiscardPolicy  这个策略和abortPolicy一样，队列满了，会直接丢掉这个任务，不过不会报任何一次
+      3.DiscardOldestPolicy  这个策略的意思是说当队列满了，从队列里面找出最老的元素，从对头移除元素，任何尝试入队。
+      4.CallerRunsPolicy    使用此策略如果添加线程池失败，那么主线程就自己执行该任务，不会等线程池中的线程执行。就像一个急脾气的人，等不到别人来做，这件事干脆自己做。
+      5.自定义  如果以上都不符合业务场景，那么可以自己定义一个拒绝策略，只要实现RejectedExecutionHandle接口，并且里面有rejectedExecution方法就可以了，
+       这几种策略其实讲起来没有好坏之分，不过是应对不同的场景。
+    -  RecursiveTask  递归任务（），ForkJoinPool（将大的任务拆分成无数小任务进行，然后汇总小任务的结果）
+    - currentHashMap相比于hashmap来讲等有10个线程操作数据的时候，那么这10个线程要排灯等待第一个线程完成后才能插入操作，相比较而言currenthashmap只会锁片段数据，那么就不会所有的锁都等待
+    - callable 产生结果，
+    - future 拿到结果 可取消 。(用callable()放入执行器 产生结果，future取结果)
+     ExecutorsService es=Executors.newFixedThreadPool(3);
+     Future future=es.sumit(new Callalbe())
